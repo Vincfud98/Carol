@@ -1,0 +1,550 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ana Carolina Marinho | Arquitetura</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+    
+    <style>
+        /* --- VARIÁVEIS DE TEMA --- */
+        :root {
+            --bg-color: #F7F7F5; /* Off-white arquitetônico */
+            --text-primary: #1A1A1A;
+            --text-secondary: #666666;
+            --accent: #A39B8B; /* Bege acinzentado */
+            --transition: cubic-bezier(0.77, 0, 0.175, 1);
+        }
+
+        /* --- RESET E SETUP GLOBAL --- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            cursor: none; /* Esconde cursor padrão para usar o customizado */
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-primary);
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, .serif {
+            font-family: 'Cinzel', serif;
+            font-weight: 400;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        /* --- CURSOR CUSTOMIZADO --- */
+        .cursor {
+            width: 12px;
+            height: 12px;
+            background-color: var(--text-primary);
+            border-radius: 50%;
+            position: fixed;
+            pointer-events: none;
+            z-index: 9999;
+            transform: translate(-50%, -50%);
+            transition: width 0.3s, height 0.3s, background-color 0.3s;
+        }
+
+        .cursor.hovered {
+            width: 60px;
+            height: 60px;
+            background-color: transparent;
+            border: 1px solid var(--text-primary);
+            mix-blend-mode: difference;
+        }
+
+        /* --- NAVEGAÇÃO SOFISTICADA --- */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 30px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            background: rgba(247, 247, 245, 0.8);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(26, 26, 26, 0.05);
+            transition: padding 0.5s ease;
+        }
+
+        nav.scrolled {
+            padding: 15px 5%;
+        }
+
+        .logo {
+            font-size: 1.2rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 40px;
+        }
+
+        .nav-links a {
+            font-size: 0.85rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0%;
+            height: 1px;
+            background-color: var(--text-primary);
+            transition: width 0.4s var(--transition);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* --- ANIMAÇÃO DE REVEAL (JS) --- */
+        .reveal {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 1s var(--transition);
+        }
+        
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* --- HERO SECTION --- */
+        .hero {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 0 10%;
+        }
+
+        .hero h1 {
+            font-size: clamp(3rem, 8vw, 7rem);
+            line-height: 1.1;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            color: var(--text-secondary);
+            max-width: 500px;
+            font-weight: 300;
+        }
+
+        /* --- SOBRE E SKILLS --- */
+        .section-padding {
+            padding: 150px 10%;
+        }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 100px;
+            align-items: center;
+        }
+
+        .about-img {
+            width: 100%;
+            height: 70vh;
+            background-color: #E5E5E5;
+            background-image: url('https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=1000&auto=format&fit=crop'); /* Img genérica arquitetura */
+            background-size: cover;
+            background-position: center;
+            border-radius: 4px;
+        }
+
+        .section-title {
+            font-size: 3rem;
+            margin-bottom: 30px;
+            position: relative;
+        }
+
+        .section-title::before {
+            content: '';
+            display: block;
+            width: 50px;
+            height: 2px;
+            background-color: var(--accent);
+            margin-bottom: 20px;
+        }
+
+        .about-text p {
+            margin-bottom: 20px;
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            line-height: 1.8;
+        }
+
+        .skills-wrapper {
+            margin-top: 50px;
+            display: flex;
+            gap: 50px;
+        }
+
+        .skill-col h4 {
+            font-family: 'Cinzel', serif;
+            font-size: 1.2rem;
+            margin-bottom: 15px;
+            border-bottom: 1px solid var(--accent);
+            padding-bottom: 10px;
+        }
+
+        .skill-col ul {
+            list-style: none;
+            color: var(--text-secondary);
+        }
+
+        .skill-col ul li {
+            margin-bottom: 8px;
+            font-size: 0.95rem;
+        }
+
+        /* --- GALERIA DE PROJETOS --- */
+        .projects-header {
+            text-align: center;
+            margin-bottom: 80px;
+        }
+
+        .project-item {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0;
+            margin-bottom: 150px;
+            align-items: center;
+        }
+
+        .project-item:nth-child(even) {
+            direction: rtl; /* Inverte o lado da imagem/texto */
+        }
+
+        .project-item:nth-child(even) > * {
+            direction: ltr; /* Restaura o texto para o sentido normal */
+        }
+
+        .project-img-wrapper {
+            position: relative;
+            overflow: hidden;
+            height: 80vh;
+            width: 100%;
+        }
+
+        .project-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 1.5s var(--transition);
+        }
+
+        .project-img-wrapper:hover .project-img {
+            transform: scale(1.08);
+        }
+
+        .project-info {
+            padding: 0 10%;
+        }
+
+        .project-meta {
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--accent);
+            margin-bottom: 15px;
+            display: block;
+        }
+
+        .project-info h3 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+        }
+
+        .project-info p {
+            color: var(--text-secondary);
+            margin-bottom: 30px;
+            line-height: 1.8;
+        }
+
+        .btn-projeto {
+            display: inline-block;
+            padding: 15px 30px;
+            border: 1px solid var(--text-primary);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 0.8rem;
+            position: relative;
+            overflow: hidden;
+            transition: color 0.4s;
+        }
+
+        .btn-projeto::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background-color: var(--text-primary);
+            transition: left 0.4s var(--transition);
+            z-index: -1;
+        }
+
+        .btn-projeto:hover {
+            color: var(--bg-color);
+        }
+
+        .btn-projeto:hover::before {
+            left: 0;
+        }
+
+        /* --- FOOTER / CONTATO --- */
+        footer {
+            background-color: #111;
+            color: var(--bg-color);
+            padding: 100px 10% 50px;
+            text-align: center;
+        }
+
+        footer h2 {
+            font-size: clamp(2rem, 5vw, 4rem);
+            margin-bottom: 50px;
+        }
+
+        .contact-links {
+            display: flex;
+            justify-content: center;
+            gap: 50px;
+            margin-bottom: 80px;
+        }
+
+        .contact-links a {
+            font-size: 1.2rem;
+            position: relative;
+            display: inline-block;
+        }
+
+        .contact-links a::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 1px;
+            bottom: -5px;
+            left: 0;
+            background-color: var(--accent);
+            transform: scaleX(0);
+            transform-origin: bottom right;
+            transition: transform 0.4s ease-out;
+        }
+
+        .contact-links a:hover::after {
+            transform: scaleX(1);
+            transform-origin: bottom left;
+        }
+
+        .copyright {
+            color: var(--text-secondary);
+            font-size: 0.8rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            padding-top: 20px;
+        }
+
+        /* --- RESPONSIVIDADE --- */
+        @media (max-width: 900px) {
+            .about-grid, .project-item {
+                grid-template-columns: 1fr;
+                gap: 50px;
+            }
+            .project-item:nth-child(even) {
+                direction: ltr;
+            }
+            .project-img-wrapper {
+                height: 50vh;
+            }
+            .project-info {
+                padding: 0;
+            }
+            .contact-links {
+                flex-direction: column;
+                gap: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="cursor" id="cursor"></div>
+
+    <nav id="navbar">
+        <div class="logo serif">ACM.</div>
+        <div class="nav-links">
+            <a href="#sobre" class="hover-target">Sobre</a>
+            <a href="#projetos" class="hover-target">Projetos</a>
+            <a href="#contato" class="hover-target">Contato</a>
+        </div>
+    </nav>
+
+    <header class="hero">
+        <h1 class="reveal">Ana Carolina<br>Marinho</h1>
+        <p class="reveal" style="transition-delay: 0.2s;">Arquitetura & Urbanismo. Explorando espaços, criando conexões sensoriais e transformando ambientes.</p>
+    </header>
+
+    <section id="sobre" class="section-padding">
+        <div class="about-grid">
+            <div class="about-img reveal hover-target"></div>
+            <div class="about-text reveal">
+                <h2 class="section-title">A Essência</h2>
+                <p>Desde pequena sou apaixonada por Arquitetura; gostava de acompanhar de perto a obra da construção da casa da minha família. Hoje, busco aprimorar minhas habilidades em arquitetura, urbanismo e design de interiores.</p>
+                <p>Acredito em definir espaços com ambientes de qualidade, capazes de agradar os diversos sentidos do corpo humano, proporcionando sensação de bem-estar e acolhimento.</p>
+                
+                <div class="skills-wrapper">
+                    <div class="skill-col">
+                        <h4>Hard Skills</h4>
+                        <ul>
+                            <li>AutoCAD & Revit 2024</li>
+                            <li>SketchUp & LayOut</li>
+                            <li>Enscape (Renderização)</li>
+                            <li>Photoshop</li>
+                        </ul>
+                    </div>
+                    <div class="skill-col">
+                        <h4>Soft Skills</h4>
+                        <ul>
+                            <li>Compromisso</li>
+                            <li>Criatividade</li>
+                            <li>Organização</li>
+                            <li>Tenacidade</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="projetos" class="section-padding" style="background-color: #FFFFFF;">
+        <div class="projects-header reveal">
+            <h2 class="section-title" style="display: inline-block;">Obras & Projetos</h2>
+        </div>
+
+        <div class="project-item reveal">
+            <div class="project-img-wrapper hover-target">
+                <img src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?q=80&w=1000&auto=format&fit=crop" class="project-img" alt="Residencial Térreo">
+            </div>
+            <div class="project-info">
+                <span class="project-meta">Acadêmico • 2023 • Revit & Enscape</span>
+                <h3>Residencial Térreo</h3>
+                <p>Projeto executivo desenvolvido durante a disciplina de Maquete Virtual, focado em detalhamento construtivo e domínio de representação tridimensional.</p>
+                <a href="#" class="btn-projeto hover-target">Ver Detalhes</a>
+            </div>
+        </div>
+
+        <div class="project-item reveal">
+            <div class="project-img-wrapper hover-target">
+                <img src="https://images.unsplash.com/photo-1518134346374-184f9d21ce23?q=80&w=1000&auto=format&fit=crop" class="project-img" alt="Reforma do Chalé">
+            </div>
+            <div class="project-info">
+                <span class="project-meta">Acadêmico • 2024 • AutoCAD & SketchUp</span>
+                <h3>Reforma do Chalé</h3>
+                <p>Transformação de um chalé em residência principal. O foco foi atender as demandas do cliente criando uma casa acolhedora, relaxante, com ambientes espaçosos e excelente ventilação cruzada.</p>
+                <a href="#" class="btn-projeto hover-target">Ver Detalhes</a>
+            </div>
+        </div>
+
+        <div class="project-item reveal">
+            <div class="project-img-wrapper hover-target">
+                <img src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?q=80&w=1000&auto=format&fit=crop" class="project-img" alt="Vila Oliveira">
+            </div>
+            <div class="project-info">
+                <span class="project-meta">Acadêmico • 2023 • Arquitetura Inclusiva</span>
+                <h3>Residencial Vila Oliveira</h3>
+                <p>Conceito aberto planejado para a acessibilidade de uma pessoa com deficiência (PCD). Materiais com alta performance acústica, cores claras ampliando os espaços e forte integração familiar.</p>
+                <a href="#" class="btn-projeto hover-target">Ver Detalhes</a>
+            </div>
+        </div>
+
+    </section>
+
+    <footer id="contato">
+        <h2 class="reveal">Vamos materializar ideias?</h2>
+        <div class="contact-links reveal" style="transition-delay: 0.2s;">
+            <a href="mailto:carolmarinho0706@gmail.com" class="hover-target">carolmarinho0706@gmail.com</a>
+            <a href="tel:+5511932426452" class="hover-target">+55 (11) 93242 6452</a>
+            <a href="#" class="hover-target">Mogi das Cruzes, SP</a>
+        </div>
+        <div class="copyright">
+            <p>&copy; 2024 Ana Carolina Barbosa Marinho. Todos os direitos reservados.</p>
+        </div>
+    </footer>
+
+    <script>
+        // 1. Lógica do Cursor Customizado
+        const cursor = document.getElementById('cursor');
+        const hoverTargets = document.querySelectorAll('.hover-target');
+
+        document.addEventListener('mousemove', (e) => {
+            cursor.style.left = e.clientX + 'px';
+            cursor.style.top = e.clientY + 'px';
+        });
+
+        hoverTargets.forEach(target => {
+            target.addEventListener('mouseenter', () => {
+                cursor.classList.add('hovered');
+            });
+            target.addEventListener('mouseleave', () => {
+                cursor.classList.add('hovered');
+                cursor.classList.remove('hovered'); // correção de reset
+            });
+        });
+
+        // 2. Navbar encolhendo ao rolar a página
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // 3. Efeito Reveal (Surgimento de elementos com scroll)
+        function reveal() {
+            var reveals = document.querySelectorAll(".reveal");
+            for (var i = 0; i < reveals.length; i++) {
+                var windowHeight = window.innerHeight;
+                var elementTop = reveals[i].getBoundingClientRect().top;
+                var elementVisible = 100; // O quão antes o elemento aparece
+
+                if (elementTop < windowHeight - elementVisible) {
+                    reveals[i].classList.add("active");
+                }
+            }
+        }
+        window.addEventListener("scroll", reveal);
+        // Chama uma vez para exibir elementos que já estão no topo
+        reveal();
+    </script>
+</body>
+</html>
