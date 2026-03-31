@@ -3,28 +3,39 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ana Carolina Marinho | Arquitetura</title>
-    
+    <title>Carol Marinho Arquitetura | Portfolio</title>
+    <meta name="description" content="Portfolio de arquitetura com narrativa imersiva, projetos autorais e experiencias residenciais, corporativas e comerciais assinadas por Carol Marinho.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
-    
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Cormorant+Garamond:wght@500;600;700&display=swap" rel="stylesheet">
     <style>
-        /* --- VARIÁVEIS DE TEMA --- */
         :root {
-            --bg-color: #F7F7F5; /* Off-white arquitetônico */
-            --text-primary: #1A1A1A;
-            --text-secondary: #666666;
-            --accent: #A39B8B; /* Bege acinzentado */
-            --transition: cubic-bezier(0.77, 0, 0.175, 1);
+            --bg: #f3f0ea;
+            --surface: rgba(255, 255, 255, 0.7);
+            --surface-strong: rgba(255, 255, 255, 0.9);
+            --panel: #ffffff;
+            --ink: #141414;
+            --muted: #5c5c60;
+            --line: rgba(20, 20, 20, 0.08);
+            --line-strong: rgba(20, 20, 20, 0.14);
+            --accent: #b07f52;
+            --accent-soft: rgba(176, 127, 82, 0.12);
+            --hero-bg: #0f1115;
+            --hero-overlay: rgba(15, 17, 21, 0.54);
+            --radius-xl: 34px;
+            --radius-lg: 24px;
+            --radius-md: 18px;
+            --shadow-soft: 0 30px 70px rgba(20, 20, 20, 0.08);
+            --shadow-strong: 0 24px 80px rgba(0, 0, 0, 0.22);
+            --container: min(1380px, calc(100vw - 40px));
+            --header-height: 64px;
+            --localnav-height: 72px;
         }
 
-        /* --- RESET E SETUP GLOBAL --- */
         * {
+            box-sizing: border-box;
             margin: 0;
             padding: 0;
-            box-sizing: border-box;
-            cursor: none; /* Esconde cursor padrão para usar o customizado */
         }
 
         html {
@@ -32,519 +43,2127 @@
         }
 
         body {
-            font-family: 'Inter', sans-serif;
-            background-color: var(--bg-color);
-            color: var(--text-primary);
+            min-height: 100vh;
+            background:
+                radial-gradient(circle at top left, rgba(176, 127, 82, 0.14), transparent 28%),
+                linear-gradient(180deg, #f6f3ee 0%, #f3f0ea 100%);
+            color: var(--ink);
+            font-family: "Manrope", sans-serif;
+            line-height: 1.5;
             overflow-x: hidden;
         }
 
-        h1, h2, h3, .serif {
-            font-family: 'Cinzel', serif;
-            font-weight: 400;
+        body::before {
+            content: "";
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            background-image:
+                linear-gradient(rgba(20, 20, 20, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(20, 20, 20, 0.03) 1px, transparent 1px);
+            background-size: 92px 92px;
+            mask-image: linear-gradient(180deg, rgba(0, 0, 0, 0.9), transparent 88%);
+            z-index: -1;
+        }
+
+        img {
+            display: block;
+            width: 100%;
+            max-width: 100%;
         }
 
         a {
-            text-decoration: none;
             color: inherit;
+            text-decoration: none;
         }
 
-        /* --- CURSOR CUSTOMIZADO --- */
-        .cursor {
-            width: 12px;
-            height: 12px;
-            background-color: var(--text-primary);
-            border-radius: 50%;
-            position: fixed;
-            pointer-events: none;
-            z-index: 9999;
-            transform: translate(-50%, -50%);
-            transition: width 0.3s, height 0.3s, background-color 0.3s;
+        button {
+            border: 0;
+            background: none;
+            color: inherit;
+            font: inherit;
+            cursor: pointer;
         }
 
-        .cursor.hovered {
-            width: 60px;
-            height: 60px;
-            background-color: transparent;
-            border: 1px solid var(--text-primary);
-            mix-blend-mode: difference;
+        ul {
+            list-style: none;
         }
 
-        /* --- NAVEGAÇÃO SOFISTICADA --- */
-        nav {
+        .container {
+            width: var(--container);
+            margin: 0 auto;
+        }
+
+        .serif {
+            font-family: "Cormorant Garamond", serif;
+            letter-spacing: -0.03em;
+        }
+
+        .eyebrow {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 0.72rem;
+            font-weight: 800;
+            letter-spacing: 0.22em;
+            text-transform: uppercase;
+        }
+
+        .eyebrow::before {
+            content: "";
+            width: 42px;
+            height: 1px;
+            background: currentColor;
+            opacity: 0.48;
+        }
+
+        .section-shell {
+            padding: 96px 0;
+        }
+
+        .section-intro {
+            display: flex;
+            align-items: end;
+            justify-content: space-between;
+            gap: 28px;
+            margin-bottom: 32px;
+        }
+
+        .section-title {
+            max-width: 700px;
+            font-size: clamp(2.5rem, 4vw, 4.8rem);
+            line-height: 0.95;
+        }
+
+        .section-copy {
+            max-width: 460px;
+            color: var(--muted);
+            font-size: 1rem;
+        }
+
+        .pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 11px 18px;
+            border-radius: 999px;
+            background: rgba(255, 255, 255, 0.13);
+            border: 1px solid rgba(255, 255, 255, 0.18);
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
+        }
+
+        .button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            padding: 14px 24px;
+            border-radius: 999px;
+            font-size: 0.92rem;
+            font-weight: 700;
+            transition: transform 0.25s ease, background 0.25s ease, color 0.25s ease, border-color 0.25s ease;
+        }
+
+        .button:hover,
+        .button:focus-visible {
+            transform: translateY(-2px);
+        }
+
+        .button-primary {
+            background: #ffffff;
+            color: #0f1115;
+        }
+
+        .button-secondary {
+            background: transparent;
+            border: 1px solid rgba(255, 255, 255, 0.22);
+            color: #ffffff;
+        }
+
+        .button-ghost {
+            background: transparent;
+            border: 1px solid var(--line-strong);
+            color: var(--ink);
+        }
+        .global-header {
             position: fixed;
             top: 0;
+            left: 0;
             width: 100%;
-            padding: 30px 5%;
+            z-index: 50;
+            padding-top: 12px;
+        }
+
+        .global-header.scrolled .global-shell {
+            background: rgba(247, 243, 237, 0.72);
+            border-color: rgba(20, 20, 20, 0.08);
+            box-shadow: 0 20px 50px rgba(20, 20, 20, 0.08);
+        }
+
+        .global-shell {
+            width: var(--container);
+            min-height: var(--header-height);
+            margin: 0 auto;
+            padding: 12px 18px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 24px;
+            border: 1px solid transparent;
+            border-radius: 999px;
+            backdrop-filter: blur(22px);
+            -webkit-backdrop-filter: blur(22px);
+            transition: background 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            flex-shrink: 0;
+        }
+
+        .brand-mark {
+            width: 42px;
+            height: 42px;
+            display: grid;
+            place-items: center;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #fbfaf8, #d4c2b0);
+            color: #111214;
+            font-size: 1rem;
+            font-weight: 800;
+            letter-spacing: 0.28em;
+            text-transform: uppercase;
+        }
+
+        .brand-copy {
+            display: flex;
+            flex-direction: column;
+            gap: 3px;
+        }
+
+        .brand-name {
+            font-size: 0.86rem;
+            font-weight: 800;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+        }
+
+        .brand-role {
+            font-size: 0.72rem;
+            color: var(--muted);
+            letter-spacing: 0.16em;
+            text-transform: uppercase;
+        }
+
+        .global-links {
+            display: flex;
+            align-items: center;
+            gap: 22px;
+            font-size: 0.82rem;
+            font-weight: 700;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+        }
+
+        .global-links a {
+            position: relative;
+            padding-bottom: 4px;
+        }
+
+        .global-links a::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 100%;
+            height: 1px;
+            background: currentColor;
+            transform: scaleX(0);
+            transform-origin: right;
+            transition: transform 0.3s ease;
+        }
+
+        .global-links a:hover::after,
+        .global-links a:focus-visible::after,
+        .global-links a.active::after {
+            transform: scaleX(1);
+            transform-origin: left;
+        }
+
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .mobile-menu-toggle {
+            display: none;
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            border: 1px solid var(--line-strong);
+        }
+
+        .local-nav {
+            position: sticky;
+            top: 12px;
+            z-index: 45;
+            margin-top: calc(var(--header-height) + 20px);
+            pointer-events: none;
+        }
+
+        .local-shell {
+            width: var(--container);
+            min-height: var(--localnav-height);
+            margin: 0 auto;
+            padding: 14px 18px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 18px;
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            border-radius: 28px;
+            background: rgba(15, 17, 21, 0.76);
+            color: #f2eee8;
+            box-shadow: var(--shadow-strong);
+            backdrop-filter: blur(22px);
+            -webkit-backdrop-filter: blur(22px);
+            pointer-events: auto;
+        }
+
+        .local-brand {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+            min-width: 160px;
+        }
+
+        .local-brand strong {
+            font-size: 0.95rem;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+        }
+
+        .local-brand span {
+            font-size: 0.78rem;
+            color: rgba(242, 238, 232, 0.7);
+        }
+
+        .local-links {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .local-links a {
+            padding: 10px 14px;
+            border-radius: 999px;
+            font-size: 0.78rem;
+            font-weight: 700;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: rgba(242, 238, 232, 0.68);
+            transition: background 0.25s ease, color 0.25s ease;
+        }
+
+        .local-links a.active,
+        .local-links a:hover,
+        .local-links a:focus-visible {
+            background: rgba(255, 255, 255, 0.1);
+            color: #ffffff;
+        }
+
+        .local-actions {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            min-width: 180px;
+            justify-content: flex-end;
+        }
+        .hero {
+            position: relative;
+            min-height: 100svh;
+            padding: 162px 0 64px;
+            color: #f6f3ee;
+            background: var(--hero-bg);
+            overflow: clip;
+        }
+
+        .hero::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background:
+                radial-gradient(circle at top left, rgba(176, 127, 82, 0.22), transparent 26%),
+                radial-gradient(circle at bottom right, rgba(176, 127, 82, 0.15), transparent 20%);
+            z-index: 0;
+        }
+
+        .hero-stage {
+            position: absolute;
+            inset: 0;
+            overflow: hidden;
+            z-index: 0;
+        }
+
+        .hero-slide {
+            position: absolute;
+            inset: 0;
+            background-size: cover;
+            background-position: center;
+            opacity: 0;
+            transform: scale(1.05);
+            transition: opacity 1s ease, transform 8s linear;
+        }
+
+        .hero-slide.active {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        .hero-stage::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background:
+                linear-gradient(90deg, rgba(15, 17, 21, 0.84) 0%, rgba(15, 17, 21, 0.54) 44%, rgba(15, 17, 21, 0.2) 100%),
+                linear-gradient(180deg, rgba(15, 17, 21, 0.1) 0%, rgba(15, 17, 21, 0.62) 100%);
+        }
+
+        .hero-grid {
+            position: relative;
+            z-index: 1;
+            width: var(--container);
+            min-height: calc(100svh - 226px);
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: minmax(0, 0.9fr) minmax(320px, 0.75fr);
+            gap: 30px;
+            align-items: end;
+        }
+
+        .hero-copy {
+            max-width: 700px;
+            padding-bottom: 26px;
+        }
+
+        .hero-title {
+            margin-top: 18px;
+            font-size: clamp(3.6rem, 7vw, 8.4rem);
+            line-height: 0.88;
+        }
+
+        .hero-title span {
+            display: block;
+        }
+
+        .hero-description {
+            margin-top: 24px;
+            max-width: 560px;
+            font-size: clamp(1rem, 1.4vw, 1.22rem);
+            color: rgba(246, 243, 238, 0.74);
+        }
+
+        .hero-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 14px;
+            margin-top: 30px;
+        }
+
+        .hero-meta {
+            margin-top: 34px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 14px;
+        }
+
+        .hero-stat {
+            min-width: 156px;
+            padding: 16px 18px;
+            border-radius: 22px;
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+        }
+
+        .hero-stat strong {
+            display: block;
+            font-size: 1.8rem;
+            line-height: 1;
+        }
+
+        .hero-stat span {
+            display: block;
+            margin-top: 8px;
+            font-size: 0.82rem;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: rgba(246, 243, 238, 0.68);
+        }
+
+        .hero-panel {
+            justify-self: end;
+            width: min(420px, 100%);
+            padding: 28px;
+            border-radius: var(--radius-xl);
+            background: rgba(255, 255, 255, 0.09);
+            border: 1px solid rgba(255, 255, 255, 0.14);
+            backdrop-filter: blur(22px);
+            -webkit-backdrop-filter: blur(22px);
+            box-shadow: var(--shadow-strong);
+        }
+
+        .hero-panel-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: start;
+            gap: 16px;
+        }
+
+        .hero-panel h2 {
+            font-size: 1.4rem;
+            line-height: 1.05;
+        }
+
+        .hero-panel p {
+            margin-top: 10px;
+            color: rgba(246, 243, 238, 0.72);
+            font-size: 0.96rem;
+        }
+
+        .control-button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.12);
+            border: 1px solid rgba(255, 255, 255, 0.16);
+            font-size: 0.82rem;
+            font-weight: 800;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+        }
+
+        .hero-timeline {
+            display: grid;
+            gap: 14px;
+            margin-top: 24px;
+        }
+
+        .hero-timeline li {
+            display: flex;
+            gap: 16px;
+            align-items: start;
+            padding-top: 14px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .hero-timeline strong {
+            min-width: 68px;
+            font-size: 0.78rem;
+            font-weight: 800;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            color: rgba(246, 243, 238, 0.58);
+        }
+
+        .hero-timeline span {
+            color: rgba(246, 243, 238, 0.84);
+        }
+
+        .hero-marquee {
+            position: relative;
+            z-index: 1;
+            width: var(--container);
+            margin: 34px auto 0;
+            padding: 18px 24px;
+            border-top: 1px solid rgba(255, 255, 255, 0.12);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            gap: 18px;
+            font-size: 0.82rem;
+            letter-spacing: 0.16em;
+            text-transform: uppercase;
+            color: rgba(246, 243, 238, 0.72);
+        }
+
+        .highlights {
+            position: relative;
+            margin-top: -10px;
+            padding-top: 54px;
+        }
+
+        .carousel-shell {
+            position: relative;
+            padding: 24px 0 12px;
+        }
+
+        .carousel-track {
+            display: grid;
+            grid-auto-flow: column;
+            grid-auto-columns: minmax(260px, 1fr);
+            gap: 18px;
+            overflow-x: auto;
+            scroll-snap-type: x mandatory;
+            scrollbar-width: none;
+            padding-bottom: 8px;
+        }
+
+        .carousel-track::-webkit-scrollbar {
+            display: none;
+        }
+
+        .media-card {
+            min-height: 540px;
+            position: relative;
+            overflow: hidden;
+            scroll-snap-align: start;
+            border-radius: var(--radius-xl);
+            color: #ffffff;
+            box-shadow: var(--shadow-soft);
+        }
+
+        .media-card img {
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .media-card::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(180deg, rgba(10, 10, 10, 0.1) 0%, rgba(10, 10, 10, 0.74) 100%);
+        }
+
+        .media-copy {
+            position: absolute;
+            inset: auto 22px 22px;
+            z-index: 1;
+        }
+
+        .media-copy strong {
+            display: block;
+            font-size: 1.95rem;
+            line-height: 1;
+            margin-bottom: 12px;
+        }
+
+        .media-copy p {
+            max-width: 320px;
+            color: rgba(255, 255, 255, 0.82);
+        }
+
+        .carousel-controls {
+            margin-top: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 18px;
+        }
+
+        .dot-group {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .dot {
+            width: 11px;
+            height: 11px;
+            border-radius: 50%;
+            background: rgba(20, 20, 20, 0.14);
+            transition: transform 0.2s ease, background 0.2s ease;
+        }
+
+        .dot.active {
+            background: var(--ink);
+            transform: scale(1.15);
+        }
+
+        .arrow-group {
+            display: flex;
+            gap: 10px;
+        }
+
+        .arrow-button {
+            width: 46px;
+            height: 46px;
+            border-radius: 50%;
+            background: var(--panel);
+            border: 1px solid var(--line);
+            box-shadow: 0 14px 30px rgba(20, 20, 20, 0.08);
+        }
+        .projects {
+            background: linear-gradient(180deg, transparent 0%, rgba(255, 255, 255, 0.35) 100%);
+        }
+
+        .project-stage {
+            display: grid;
+            grid-template-columns: 320px minmax(0, 1fr);
+            gap: 24px;
+            align-items: stretch;
+        }
+
+        .project-list {
+            display: grid;
+            gap: 12px;
+        }
+
+        .project-button {
+            width: 100%;
+            padding: 20px 22px;
+            border-radius: var(--radius-lg);
+            border: 1px solid var(--line);
+            background: rgba(255, 255, 255, 0.54);
+            text-align: left;
+            transition: transform 0.25s ease, background 0.25s ease, border-color 0.25s ease;
+        }
+
+        .project-button.active {
+            background: #111318;
+            color: #f6f3ee;
+            border-color: transparent;
+            transform: translateX(8px);
+        }
+
+        .project-button small {
+            display: block;
+            font-size: 0.72rem;
+            font-weight: 800;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            opacity: 0.7;
+        }
+
+        .project-button strong {
+            display: block;
+            margin-top: 8px;
+            font-size: 1.18rem;
+            line-height: 1.1;
+        }
+
+        .project-button span {
+            display: block;
+            margin-top: 10px;
+            font-size: 0.94rem;
+            opacity: 0.78;
+        }
+
+        .project-display {
+            position: relative;
+            min-height: 720px;
+            border-radius: 36px;
+            overflow: hidden;
+            box-shadow: var(--shadow-soft);
+            background: #111318;
+            color: #f6f3ee;
+        }
+
+        .project-visual {
+            position: absolute;
+            inset: 0;
+            opacity: 0;
+            transition: opacity 0.45s ease;
+        }
+
+        .project-visual.active {
+            opacity: 1;
+        }
+
+        .project-visual img {
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .project-visual::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background:
+                linear-gradient(180deg, rgba(12, 14, 19, 0.08) 20%, rgba(12, 14, 19, 0.8) 100%);
+        }
+
+        .project-overlay {
+            position: relative;
+            z-index: 1;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            padding: 34px;
+        }
+
+        .project-tagline {
+            max-width: 420px;
+            align-self: end;
+            padding: 18px 20px;
+            border-radius: 22px;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.16);
+            backdrop-filter: blur(18px);
+            -webkit-backdrop-filter: blur(18px);
+        }
+
+        .project-bottom {
+            display: grid;
+            grid-template-columns: minmax(0, 1fr) auto;
+            gap: 22px;
+            align-items: end;
+        }
+
+        .project-copy h3 {
+            font-size: clamp(2.6rem, 4.6vw, 4.8rem);
+            line-height: 0.92;
+            max-width: 760px;
+        }
+
+        .project-copy p {
+            max-width: 560px;
+            margin-top: 18px;
+            color: rgba(246, 243, 238, 0.74);
+        }
+
+        .project-facts {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(120px, 1fr));
+            gap: 12px;
+            margin-top: 24px;
+        }
+
+        .fact {
+            padding: 16px;
+            border-radius: 18px;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+        }
+
+        .fact strong {
+            display: block;
+            font-size: 1.3rem;
+            line-height: 1;
+        }
+
+        .fact span {
+            display: block;
+            margin-top: 8px;
+            font-size: 0.78rem;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: rgba(246, 243, 238, 0.64);
+        }
+
+        .project-selector {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            justify-content: end;
+        }
+
+        .selector-chip {
+            padding: 10px 16px;
+            border-radius: 999px;
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.14);
+            font-size: 0.82rem;
+            font-weight: 700;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: rgba(246, 243, 238, 0.72);
+        }
+
+        .selector-chip.active {
+            background: #ffffff;
+            color: #101216;
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: minmax(0, 1.15fr) minmax(300px, 0.85fr);
+            gap: 24px;
+            align-items: stretch;
+        }
+
+        .gallery-feature,
+        .stack-card,
+        .principle-card,
+        .contact-panel,
+        .footer-grid {
+            border-radius: var(--radius-xl);
+            background: rgba(255, 255, 255, 0.72);
+            border: 1px solid rgba(255, 255, 255, 0.62);
+            box-shadow: var(--shadow-soft);
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
+        }
+
+        .gallery-feature {
+            overflow: hidden;
+            display: grid;
+            grid-template-rows: minmax(320px, 520px) auto;
+        }
+
+        .gallery-feature img {
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .gallery-feature-copy {
+            padding: 26px;
+            display: grid;
+            gap: 14px;
+        }
+
+        .gallery-feature-copy h3 {
+            font-size: 2rem;
+            line-height: 1;
+        }
+
+        .stack-panel {
+            display: grid;
+            gap: 18px;
+        }
+
+        .stack-card {
+            overflow: hidden;
+        }
+
+        .stack-card img {
+            height: 240px;
+            object-fit: cover;
+        }
+
+        .stack-card-copy {
+            padding: 20px;
+        }
+
+        .stack-card-copy strong {
+            display: block;
+            font-size: 1.24rem;
+            line-height: 1.05;
+        }
+
+        .stack-card-copy p {
+            margin-top: 10px;
+            color: var(--muted);
+        }
+        .compare-panel {
+            margin-top: 24px;
+            padding: 28px;
+            border-radius: var(--radius-xl);
+            background: #101216;
+            color: #f3f0ea;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            z-index: 1000;
-            background: rgba(247, 247, 245, 0.8);
-            backdrop-filter: blur(10px);
-            border-bottom: 1px solid rgba(26, 26, 26, 0.05);
-            transition: padding 0.5s ease;
+            gap: 24px;
         }
 
-        nav.scrolled {
-            padding: 15px 5%;
+        .compare-panel h3 {
+            font-size: clamp(1.8rem, 3vw, 2.8rem);
+            line-height: 0.96;
         }
 
-        .logo {
-            font-size: 1.2rem;
-            letter-spacing: 2px;
+        .compare-panel p {
+            max-width: 560px;
+            margin-top: 10px;
+            color: rgba(243, 240, 234, 0.72);
+        }
+
+        .principle-grid {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 18px;
+        }
+
+        .principle-card {
+            padding: 28px;
+        }
+
+        .principle-card h3 {
+            margin-top: 20px;
+            font-size: 1.8rem;
+            line-height: 0.95;
+        }
+
+        .principle-card p {
+            margin-top: 16px;
+            color: var(--muted);
+        }
+
+        .principle-number {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            background: var(--accent-soft);
+            color: var(--accent);
+            font-size: 0.8rem;
+            font-weight: 800;
+            letter-spacing: 0.14em;
             text-transform: uppercase;
         }
 
-        .nav-links {
+        .contact-grid {
+            display: grid;
+            grid-template-columns: minmax(0, 1.05fr) minmax(280px, 0.95fr);
+            gap: 20px;
+        }
+
+        .contact-panel {
+            padding: 34px;
+        }
+
+        .contact-panel h2 {
+            font-size: clamp(2.5rem, 4vw, 4.4rem);
+            line-height: 0.94;
+            max-width: 560px;
+        }
+
+        .contact-panel p {
+            max-width: 520px;
+            margin-top: 18px;
+            color: var(--muted);
+            font-size: 1rem;
+        }
+
+        .contact-actions {
             display: flex;
-            gap: 40px;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-top: 30px;
         }
 
-        .nav-links a {
-            font-size: 0.85rem;
-            letter-spacing: 1px;
+        .contact-detail-list {
+            display: grid;
+            gap: 16px;
+        }
+
+        .contact-detail {
+            padding: 18px 0;
+            border-top: 1px solid var(--line);
+        }
+
+        .contact-detail small {
+            display: block;
+            font-size: 0.72rem;
+            font-weight: 800;
+            letter-spacing: 0.18em;
             text-transform: uppercase;
-            position: relative;
+            color: var(--muted);
         }
 
-        .nav-links a::after {
-            content: '';
-            position: absolute;
-            bottom: -5px;
-            left: 0;
-            width: 0%;
-            height: 1px;
-            background-color: var(--text-primary);
-            transition: width 0.4s var(--transition);
+        .contact-detail strong {
+            display: block;
+            margin-top: 10px;
+            font-size: 1.1rem;
         }
 
-        .nav-links a:hover::after {
-            width: 100%;
+        .site-footer {
+            padding: 28px 0 40px;
         }
 
-        /* --- ANIMAÇÃO DE REVEAL (JS) --- */
+        .footer-grid {
+            width: var(--container);
+            margin: 0 auto;
+            padding: 24px 28px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 18px;
+            color: var(--muted);
+        }
+
+        .footer-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 18px;
+            font-size: 0.88rem;
+        }
+
+        .compare-modal {
+            position: fixed;
+            inset: 0;
+            display: grid;
+            place-items: center;
+            padding: 24px;
+            background: rgba(9, 11, 15, 0.68);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            z-index: 80;
+        }
+
+        .compare-modal[hidden] {
+            display: none;
+        }
+
+        .compare-dialog {
+            width: min(1200px, 100%);
+            max-height: min(90vh, 960px);
+            overflow: auto;
+            border-radius: 34px;
+            background: #f8f5ef;
+            box-shadow: 0 42px 120px rgba(0, 0, 0, 0.25);
+        }
+
+        .compare-header {
+            position: sticky;
+            top: 0;
+            z-index: 2;
+            padding: 28px 30px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: start;
+            gap: 24px;
+            background: rgba(248, 245, 239, 0.92);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--line);
+        }
+
+        .compare-header h2 {
+            font-size: clamp(2rem, 4vw, 3.6rem);
+            line-height: 0.94;
+        }
+
+        .compare-header p {
+            max-width: 620px;
+            margin-top: 12px;
+            color: var(--muted);
+        }
+
+        .compare-close {
+            flex-shrink: 0;
+        }
+
+        .compare-content {
+            padding: 24px 30px 30px;
+        }
+
+        .compare-tabs {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 22px;
+        }
+
+        .compare-tab {
+            padding: 11px 16px;
+            border-radius: 999px;
+            border: 1px solid var(--line-strong);
+            color: var(--muted);
+            font-size: 0.82rem;
+            font-weight: 700;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+        }
+
+        .compare-tab.active {
+            background: #101216;
+            border-color: #101216;
+            color: #ffffff;
+        }
+        .compare-slide {
+            display: none;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 18px;
+        }
+
+        .compare-slide.active {
+            display: grid;
+        }
+
+        .compare-card {
+            overflow: hidden;
+            border-radius: 28px;
+            background: #ffffff;
+            border: 1px solid rgba(20, 20, 20, 0.06);
+            box-shadow: var(--shadow-soft);
+        }
+
+        .compare-card img {
+            height: 280px;
+            object-fit: cover;
+        }
+
+        .compare-card-body {
+            padding: 22px;
+        }
+
+        .compare-card-body small {
+            display: block;
+            font-size: 0.72rem;
+            font-weight: 800;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            color: var(--muted);
+        }
+
+        .compare-card-body h3 {
+            margin-top: 10px;
+            font-size: 1.7rem;
+            line-height: 0.95;
+        }
+
+        .compare-card-body p {
+            margin-top: 14px;
+            color: var(--muted);
+        }
+
+        .compare-metrics {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 10px;
+            margin-top: 18px;
+        }
+
+        .compare-metric {
+            padding: 14px;
+            border-radius: 18px;
+            background: #f4f1eb;
+        }
+
+        .compare-metric strong {
+            display: block;
+            font-size: 1.14rem;
+        }
+
+        .compare-metric span {
+            display: block;
+            margin-top: 6px;
+            font-size: 0.74rem;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: var(--muted);
+        }
+
+        .compare-footer {
+            margin-top: 22px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .compare-nav {
+            display: flex;
+            gap: 10px;
+        }
+
         .reveal {
             opacity: 0;
-            transform: translateY(50px);
-            transition: all 1s var(--transition);
+            transform: translateY(28px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
         }
-        
-        .reveal.active {
+
+        .reveal.visible {
             opacity: 1;
             transform: translateY(0);
         }
 
-        /* --- HERO SECTION --- */
-        .hero {
-            height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            padding: 0 10%;
-        }
-
-        .hero h1 {
-            font-size: clamp(3rem, 8vw, 7rem);
-            line-height: 1.1;
-            margin-bottom: 20px;
-            text-transform: uppercase;
-        }
-
-        .hero p {
-            font-size: 1.2rem;
-            color: var(--text-secondary);
-            max-width: 500px;
-            font-weight: 300;
-        }
-
-        /* --- SOBRE E SKILLS --- */
-        .section-padding {
-            padding: 150px 10%;
-        }
-
-        .about-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 100px;
-            align-items: center;
-        }
-
-        .about-img {
-            width: 100%;
-            height: 70vh;
-            background-color: #E5E5E5;
-            background-image: url('https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=1000&auto=format&fit=crop'); /* Img genérica arquitetura */
-            background-size: cover;
-            background-position: center;
-            border-radius: 4px;
-        }
-
-        .section-title {
-            font-size: 3rem;
-            margin-bottom: 30px;
-            position: relative;
-        }
-
-        .section-title::before {
-            content: '';
-            display: block;
-            width: 50px;
-            height: 2px;
-            background-color: var(--accent);
-            margin-bottom: 20px;
-        }
-
-        .about-text p {
-            margin-bottom: 20px;
-            font-size: 1.1rem;
-            color: var(--text-secondary);
-            line-height: 1.8;
-        }
-
-        .skills-wrapper {
-            margin-top: 50px;
-            display: flex;
-            gap: 50px;
-        }
-
-        .skill-col h4 {
-            font-family: 'Cinzel', serif;
-            font-size: 1.2rem;
-            margin-bottom: 15px;
-            border-bottom: 1px solid var(--accent);
-            padding-bottom: 10px;
-        }
-
-        .skill-col ul {
-            list-style: none;
-            color: var(--text-secondary);
-        }
-
-        .skill-col ul li {
-            margin-bottom: 8px;
-            font-size: 0.95rem;
-        }
-
-        /* --- GALERIA DE PROJETOS --- */
-        .projects-header {
-            text-align: center;
-            margin-bottom: 80px;
-        }
-
-        .project-item {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 0;
-            margin-bottom: 150px;
-            align-items: center;
-        }
-
-        .project-item:nth-child(even) {
-            direction: rtl; /* Inverte o lado da imagem/texto */
-        }
-
-        .project-item:nth-child(even) > * {
-            direction: ltr; /* Restaura o texto para o sentido normal */
-        }
-
-        .project-img-wrapper {
-            position: relative;
-            overflow: hidden;
-            height: 80vh;
-            width: 100%;
-        }
-
-        .project-img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 1.5s var(--transition);
-        }
-
-        .project-img-wrapper:hover .project-img {
-            transform: scale(1.08);
-        }
-
-        .project-info {
-            padding: 0 10%;
-        }
-
-        .project-meta {
-            font-size: 0.8rem;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            color: var(--accent);
-            margin-bottom: 15px;
-            display: block;
-        }
-
-        .project-info h3 {
-            font-size: 3rem;
-            margin-bottom: 20px;
-        }
-
-        .project-info p {
-            color: var(--text-secondary);
-            margin-bottom: 30px;
-            line-height: 1.8;
-        }
-
-        .btn-projeto {
-            display: inline-block;
-            padding: 15px 30px;
-            border: 1px solid var(--text-primary);
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            font-size: 0.8rem;
-            position: relative;
-            overflow: hidden;
-            transition: color 0.4s;
-        }
-
-        .btn-projeto::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background-color: var(--text-primary);
-            transition: left 0.4s var(--transition);
-            z-index: -1;
-        }
-
-        .btn-projeto:hover {
-            color: var(--bg-color);
-        }
-
-        .btn-projeto:hover::before {
-            left: 0;
-        }
-
-        /* --- FOOTER / CONTATO --- */
-        footer {
-            background-color: #111;
-            color: var(--bg-color);
-            padding: 100px 10% 50px;
-            text-align: center;
-        }
-
-        footer h2 {
-            font-size: clamp(2rem, 5vw, 4rem);
-            margin-bottom: 50px;
-        }
-
-        .contact-links {
-            display: flex;
-            justify-content: center;
-            gap: 50px;
-            margin-bottom: 80px;
-        }
-
-        .contact-links a {
-            font-size: 1.2rem;
-            position: relative;
-            display: inline-block;
-        }
-
-        .contact-links a::after {
-            content: '';
-            position: absolute;
-            width: 100%;
-            height: 1px;
-            bottom: -5px;
-            left: 0;
-            background-color: var(--accent);
-            transform: scaleX(0);
-            transform-origin: bottom right;
-            transition: transform 0.4s ease-out;
-        }
-
-        .contact-links a:hover::after {
-            transform: scaleX(1);
-            transform-origin: bottom left;
-        }
-
-        .copyright {
-            color: var(--text-secondary);
-            font-size: 0.8rem;
-            border-top: 1px solid rgba(255,255,255,0.1);
-            padding-top: 20px;
-        }
-
-        /* --- RESPONSIVIDADE --- */
-        @media (max-width: 900px) {
-            .about-grid, .project-item {
+        @media (max-width: 1180px) {
+            .project-stage,
+            .gallery-grid,
+            .contact-grid,
+            .hero-grid {
                 grid-template-columns: 1fr;
-                gap: 50px;
             }
-            .project-item:nth-child(even) {
-                direction: ltr;
+
+            .hero-panel {
+                justify-self: stretch;
+                width: 100%;
             }
-            .project-img-wrapper {
-                height: 50vh;
+
+            .project-display {
+                min-height: 660px;
             }
-            .project-info {
-                padding: 0;
+
+            .project-bottom {
+                grid-template-columns: 1fr;
             }
-            .contact-links {
+
+            .project-selector {
+                justify-content: start;
+            }
+
+            .compare-slide {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 980px) {
+            .global-shell {
+                border-radius: 28px;
+            }
+
+            .global-links,
+            .header-actions .button {
+                display: none;
+            }
+
+            .mobile-menu-toggle {
+                display: inline-flex;
+                align-items: center;
+                justify-content: center;
+            }
+
+            .global-shell.menu-open {
+                border-radius: 28px 28px 20px 20px;
+                background: rgba(247, 243, 237, 0.96);
+                border-color: rgba(20, 20, 20, 0.08);
+                flex-wrap: wrap;
+            }
+
+            .global-shell.menu-open .global-links {
+                display: flex;
+                width: 100%;
+                padding: 12px 4px 0;
                 flex-direction: column;
-                gap: 20px;
+                align-items: start;
+                gap: 16px;
+                font-size: 0.92rem;
+            }
+
+            .global-shell.menu-open .header-actions .button {
+                display: inline-flex;
+            }
+
+            .local-shell,
+            .section-intro,
+            .compare-panel,
+            .footer-grid {
+                flex-direction: column;
+                align-items: start;
+            }
+
+            .local-shell {
+                padding: 16px;
+                flex-wrap: wrap;
+                border-radius: 24px;
+            }
+
+            .local-actions,
+            .local-brand,
+            .local-links {
+                width: 100%;
+                justify-content: start;
+            }
+
+            .principle-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .project-facts {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 740px) {
+            :root {
+                --container: min(100vw - 24px, 1000px);
+            }
+
+            .hero {
+                padding-top: 148px;
+            }
+
+            .hero-meta,
+            .hero-actions,
+            .contact-actions {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .hero-stat,
+            .button,
+            .control-button {
+                width: 100%;
+            }
+
+            .media-card {
+                min-height: 460px;
+            }
+
+            .project-display {
+                min-height: 760px;
+            }
+
+            .compare-header,
+            .compare-content {
+                padding-inline: 18px;
+            }
+
+            .compare-metrics {
+                grid-template-columns: 1fr;
             }
         }
     </style>
 </head>
 <body>
+    <header class="global-header" id="globalHeader">
+        <div class="global-shell" id="globalShell">
+            <a class="brand" href="#overview" aria-label="Voltar para o inicio">
+                <span class="brand-mark">CM</span>
+                <span class="brand-copy">
+                    <strong class="brand-name">Carol Marinho</strong>
+                    <span class="brand-role">Arquitetura autoral</span>
+                </span>
+            </a>
+            <nav class="global-links" id="globalLinks" aria-label="Principal">
+                <a href="#overview">Visao geral</a>
+                <a href="#highlights">Destaques</a>
+                <a href="#projects">Projetos</a>
+                <a href="#gallery">Galeria</a>
+                <a href="#process">Processo</a>
+                <a href="#contact">Contato</a>
+            </nav>
+            <div class="header-actions">
+                <a class="button button-ghost" href="#contact">Agendar visita</a>
+                <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-expanded="false" aria-controls="globalLinks">Menu</button>
+            </div>
+        </div>
+    </header>
 
-    <div class="cursor" id="cursor"></div>
-
-    <nav id="navbar">
-        <div class="logo serif">ACM.</div>
-        <div class="nav-links">
-            <a href="#sobre" class="hover-target">Sobre</a>
-            <a href="#projetos" class="hover-target">Projetos</a>
-            <a href="#contato" class="hover-target">Contato</a>
+    <nav class="local-nav" aria-label="Navegacao de secoes">
+        <div class="local-shell">
+            <div class="local-brand">
+                <strong>Edicao 2026</strong>
+                <span>Portfolio imersivo de arquitetura</span>
+            </div>
+            <div class="local-links" id="localLinks">
+                <a href="#overview" data-section-link="overview" class="active">Visao geral</a>
+                <a href="#highlights" data-section-link="highlights">Destaques</a>
+                <a href="#projects" data-section-link="projects">Projetos</a>
+                <a href="#gallery" data-section-link="gallery">Galeria</a>
+                <a href="#process" data-section-link="process">Processo</a>
+                <a href="#contact" data-section-link="contact">Contato</a>
+            </div>
+            <div class="local-actions">
+                <a class="button button-primary" href="#contact">Falar com o studio</a>
+            </div>
         </div>
     </nav>
 
-    <header class="hero">
-        <h1 class="reveal">Ana Carolina<br>Marinho</h1>
-        <p class="reveal" style="transition-delay: 0.2s;">Arquitetura & Urbanismo. Explorando espaços, criando conexões sensoriais e transformando ambientes.</p>
-    </header>
-
-    <section id="sobre" class="section-padding">
-        <div class="about-grid">
-            <div class="about-img reveal hover-target"></div>
-            <div class="about-text reveal">
-                <h2 class="section-title">A Essência</h2>
-                <p>Desde pequena sou apaixonada por Arquitetura; gostava de acompanhar de perto a obra da construção da casa da minha família. Hoje, busco aprimorar minhas habilidades em arquitetura, urbanismo e design de interiores.</p>
-                <p>Acredito em definir espaços com ambientes de qualidade, capazes de agradar os diversos sentidos do corpo humano, proporcionando sensação de bem-estar e acolhimento.</p>
-                
-                <div class="skills-wrapper">
-                    <div class="skill-col">
-                        <h4>Hard Skills</h4>
-                        <ul>
-                            <li>AutoCAD & Revit 2024</li>
-                            <li>SketchUp & LayOut</li>
-                            <li>Enscape (Renderização)</li>
-                            <li>Photoshop</li>
-                        </ul>
+    <main>
+        <section id="overview" class="hero">
+            <div class="hero-stage" aria-hidden="true">
+                <div class="hero-slide active" style="background-image:url('https://images.unsplash.com/photo-1511818966892-d7d671e672a2?auto=format&fit=crop&w=1800&q=80');"></div>
+                <div class="hero-slide" style="background-image:url('https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format&fit=crop&w=1800&q=80');"></div>
+                <div class="hero-slide" style="background-image:url('https://images.unsplash.com/photo-1494526585095-c41746248156?auto=format&fit=crop&w=1800&q=80');"></div>
+            </div>
+            <div class="hero-grid">
+                <div class="hero-copy reveal">
+                    <span class="eyebrow">Arquitetura em camadas</span>
+                    <h1 class="hero-title serif">
+                        <span>Espacos</span>
+                        <span>que se revelam</span>
+                        <span>em movimento.</span>
+                    </h1>
+                    <p class="hero-description">Uma experiencia editorial inspirada em paginas de produto premium, adaptada ao universo da arquitetura. Carol desenha residencias, interiores e marcas espaciais com silencio visual, materialidade precisa e narrativa sensorial.</p>
+                    <div class="hero-actions">
+                        <a class="button button-primary" href="#projects">Explorar portfolio</a>
+                        <button class="button button-secondary" id="openCompareHero" type="button">Comparar frentes do studio</button>
                     </div>
-                    <div class="skill-col">
-                        <h4>Soft Skills</h4>
-                        <ul>
-                            <li>Compromisso</li>
-                            <li>Criatividade</li>
-                            <li>Organização</li>
-                            <li>Tenacidade</li>
-                        </ul>
+                    <div class="hero-meta">
+                        <div class="hero-stat">
+                            <strong>24</strong>
+                            <span>projetos em execucao</span>
+                        </div>
+                        <div class="hero-stat">
+                            <strong>11</strong>
+                            <span>cidades atendidas</span>
+                        </div>
+                        <div class="hero-stat">
+                            <strong>360</strong>
+                            <span>da concepcao ao styling</span>
+                        </div>
+                    </div>
+                </div>
+
+                <aside class="hero-panel reveal">
+                    <div class="hero-panel-top">
+                        <div>
+                            <span class="eyebrow">Leitura guiada</span>
+                            <h2>Uma jornada pensada como lancamento de produto.</h2>
+                            <p>Navegacao local fixa, cenas em destaque, galerias com autoplay e um comparativo de tipologias para mostrar como cada projeto evolui da ideia ao detalhe.</p>
+                        </div>
+                        <button class="control-button" id="heroPlayPause" type="button" aria-label="Pausar sequencia visual">Pause</button>
+                    </div>
+                    <ul class="hero-timeline">
+                        <li>
+                            <strong>01</strong>
+                            <span>Conceito espacial, leitura de luz e premissas de uso.</span>
+                        </li>
+                        <li>
+                            <strong>02</strong>
+                            <span>Estudo de volumetria, materiais e atmosferas.</span>
+                        </li>
+                        <li>
+                            <strong>03</strong>
+                            <span>Detalhamento executivo, curadoria e obra assistida.</span>
+                        </li>
+                    </ul>
+                </aside>
+            </div>
+            <div class="hero-marquee">
+                <span>Residencial de alto padrao</span>
+                <span>Espacos corporativos fluidos</span>
+                <span>Interiores com identidade de marca</span>
+                <span>Detalhamento completo</span>
+            </div>
+        </section>
+
+        <section id="highlights" class="highlights section-shell">
+            <div class="container">
+                <div class="section-intro reveal">
+                    <div>
+                        <span class="eyebrow">Comece pelos destaques</span>
+                        <h2 class="section-title serif">Uma selecao de cenas para sentir a escala, o ritmo e a atmosfera.</h2>
+                    </div>
+                    <p class="section-copy">Em vez de mostrar tudo de uma vez, a pagina conduz o olhar. Cada cartao sintetiza uma capacidade do studio: materia, luz, circulacao, experiencia da marca e precisao construtiva.</p>
+                </div>
+                <div class="carousel-shell reveal">
+                    <div class="carousel-track" id="highlightsTrack">
+                        <article class="media-card">
+                            <img src="https://images.unsplash.com/photo-1519642918688-7e43b19245d8?auto=format&fit=crop&w=1200&q=80" alt="Sala com tons claros, madeira e grandes aberturas">
+                            <div class="media-copy">
+                                <strong class="serif">Materialidade que acalma.</strong>
+                                <p>Paletas enxutas, texturas quentes e desenho de luz para fazer o espaco parecer inevitavel.</p>
+                            </div>
+                        </article>
+                        <article class="media-card">
+                            <img src="https://images.unsplash.com/photo-1460317442991-0ec209397118?auto=format&fit=crop&w=1200&q=80" alt="Interior corporativo com linhas longas e luz natural">
+                            <div class="media-copy">
+                                <strong class="serif">Fluxos que orientam.</strong>
+                                <p>Organizacao de percursos para receber, produzir, apresentar e descansar sem ruido visual.</p>
+                            </div>
+                        </article>
+                        <article class="media-card">
+                            <img src="https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format&fit=crop&w=1200&q=80" alt="Suite com luz lateral e texturas neutras">
+                            <div class="media-copy">
+                                <strong class="serif">Detalhes que prolongam o gesto.</strong>
+                                <p>Do puxador ao mobiliario solto, cada camada reforca a mesma narrativa espacial.</p>
+                            </div>
+                        </article>
+                        <article class="media-card">
+                            <img src="https://images.unsplash.com/photo-1494526585095-c41746248156?auto=format&fit=crop&w=1200&q=80" alt="Casa contemporanea com vidro e jardim integrado">
+                            <div class="media-copy">
+                                <strong class="serif">Arquitetura para viver o entorno.</strong>
+                                <p>Volumetrias abertas para integrar jardim, ventilacao cruzada e momentos de pausa.</p>
+                            </div>
+                        </article>
+                    </div>
+                    <div class="carousel-controls">
+                        <div class="dot-group" id="highlightsDots" aria-label="Navegacao da galeria de destaques"></div>
+                        <div class="arrow-group">
+                            <button class="control-button" id="highlightsPlayPause" type="button" aria-label="Pausar destaques">Pause</button>
+                            <button class="arrow-button" id="highlightsPrev" type="button" aria-label="Cartao anterior">←</button>
+                            <button class="arrow-button" id="highlightsNext" type="button" aria-label="Proximo cartao">→</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section id="projects" class="projects section-shell">
+            <div class="container">
+                <div class="section-intro reveal">
+                    <div>
+                        <span class="eyebrow">Projetos em foco</span>
+                        <h2 class="section-title serif">Uma vitrine guiada para comparar atmosferas, escalas e intencoes.</h2>
+                    </div>
+                    <p class="section-copy">A estrutura abaixo funciona como um product viewer: escolha uma frente de projeto e acompanhe como o discurso visual, os dados e a imagem principal mudam juntos.</p>
+                </div>
+                <div class="project-stage reveal">
+                    <div class="project-list" id="projectButtons">
+                        <button class="project-button active" type="button" data-project="residencia">
+                            <small>Residencial</small>
+                            <strong>Casa Horizonte</strong>
+                            <span>Amplitude, sombra e permanencia para uma familia que vive a varanda todos os dias.</span>
+                        </button>
+                        <button class="project-button" type="button" data-project="corporativo">
+                            <small>Corporativo</small>
+                            <strong>Atelier de Marca</strong>
+                            <span>Workspace boutique com recepcao cenografica, salas mutaveis e foco em hospitalidade.</span>
+                        </button>
+                        <button class="project-button" type="button" data-project="interiores">
+                            <small>Interiores</small>
+                            <strong>Apartamento Brisa</strong>
+                            <span>Reforma de interiores com marcenaria sob medida, luz difusa e texturas minerais.</span>
+                        </button>
+                    </div>
+                    <div class="project-display">
+                        <div class="project-visual active" data-project-panel="residencia">
+                            <img src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=1800&q=80" alt="Casa contemporanea com patio e grandes planos de vidro">
+                        </div>
+                        <div class="project-visual" data-project-panel="corporativo">
+                            <img src="https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=1800&q=80" alt="Escritorio com recepcao, concreto claro e madeira">
+                        </div>
+                        <div class="project-visual" data-project-panel="interiores">
+                            <img src="https://images.unsplash.com/photo-1484154218962-a197022b5858?auto=format&fit=crop&w=1800&q=80" alt="Cozinha e living integrados com tons neutros e madeira">
+                        </div>
+                        <div class="project-overlay">
+                            <div class="project-tagline" id="projectTagline">Arquitetura pensada para diluir fronteiras entre abrigo, paisagem e rotina.</div>
+                            <div class="project-bottom">
+                                <div class="project-copy">
+                                    <h3 class="serif" id="projectTitle">Casa Horizonte</h3>
+                                    <p id="projectDescription">Residencia de fim de semana desenhada para alternar introspeccao e abertura. A casa se organiza em torno de um eixo sombreado, onde sala, cozinha e patio se encontram com naturalidade.</p>
+                                    <div class="project-facts" id="projectFacts">
+                                        <div class="fact"><strong>640 m²</strong><span>area construida</span></div>
+                                        <div class="fact"><strong>12 meses</strong><span>da concepcao a obra</span></div>
+                                        <div class="fact"><strong>Pedra + madeira</strong><span>paleta material</span></div>
+                                    </div>
+                                </div>
+                                <div class="project-selector" id="projectSelector">
+                                    <button class="selector-chip active" type="button" data-project-chip="residencia">Residencia</button>
+                                    <button class="selector-chip" type="button" data-project-chip="corporativo">Corporativo</button>
+                                    <button class="selector-chip" type="button" data-project-chip="interiores">Interiores</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="gallery" class="section-shell">
+            <div class="container">
+                <div class="section-intro reveal">
+                    <div>
+                        <span class="eyebrow">Galeria editorial</span>
+                        <h2 class="section-title serif">Imagens grandes, respiros certos e leitura de portfolio com cara de lancamento.</h2>
+                    </div>
+                    <p class="section-copy">A proposta aqui e clara: traduzir o rigor de uma pagina premium para um studio de arquitetura, mas com voz propria. Menos copia de interface, mais intencao cenografica.</p>
+                </div>
+                <div class="gallery-grid reveal">
+                    <article class="gallery-feature">
+                        <img src="https://images.unsplash.com/photo-1502005097973-6a7082348e28?auto=format&fit=crop&w=1600&q=80" alt="Sala de jantar com pe-direito duplo e grandes aberturas">
+                        <div class="gallery-feature-copy">
+                            <span class="eyebrow">Cena principal</span>
+                            <h3 class="serif">Um interior que trabalha silencio, escala e calor ao mesmo tempo.</h3>
+                            <p class="section-copy">Composicao para apresentar projetos residenciais premium com impacto imediato, sem perder informacao de contexto e refinamento material.</p>
+                        </div>
+                    </article>
+                    <div class="stack-panel">
+                        <article class="stack-card">
+                            <img src="https://images.unsplash.com/photo-1460317442991-0ec209397118?auto=format&fit=crop&w=1200&q=80" alt="Sala corporativa de reuniao com vidro e madeira">
+                            <div class="stack-card-copy">
+                                <strong>Workspace com hospitalidade</strong>
+                                <p>Recepcao, boardroom e lounge integrados sob a mesma linguagem.</p>
+                            </div>
+                        </article>
+                        <article class="stack-card">
+                            <img src="https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&w=1200&q=80" alt="Quarto com roupa de cama clara e luminarias discretas">
+                            <div class="stack-card-copy">
+                                <strong>Quartos desenhados para desacelerar</strong>
+                                <p>Camadas suaves, sombra controlada e marcenaria como arquitetura.</p>
+                            </div>
+                        </article>
+                    </div>
+                </div>
+                <div class="compare-panel reveal">
+                    <div>
+                        <span class="eyebrow">Comparar abordagens</span>
+                        <h3 class="serif">Compare como o studio atua em residencial, corporativo e interiores.</h3>
+                        <p>O modal abaixo resume posicionamento, escala, entregas e ritmo de acompanhamento para cada tipologia atendida.</p>
+                    </div>
+                    <button class="button button-primary" id="openCompareGallery" type="button">Abrir comparativo</button>
+                </div>
+            </div>
+        </section>
+
+        <section id="process" class="section-shell">
+            <div class="container">
+                <div class="section-intro reveal">
+                    <div>
+                        <span class="eyebrow">Guiada por principios</span>
+                        <h2 class="section-title serif">Tres frentes sustentam a experiencia do projeto do inicio ao pos-obra.</h2>
+                    </div>
+                    <p class="section-copy">A pagina termina onde o trabalho realmente comeca: metodo. Diagnostico, conceito e acompanhamento aparecem aqui com a mesma clareza visual do restante da narrativa.</p>
+                </div>
+                <div class="principle-grid">
+                    <article class="principle-card reveal">
+                        <span class="principle-number">01</span>
+                        <h3 class="serif">Escuta antes de forma.</h3>
+                        <p>Levantamento de rotina, referencias, paisagem, marcas pessoais e necessidades operacionais para que o desenho nao seja arbitrario.</p>
+                    </article>
+                    <article class="principle-card reveal">
+                        <span class="principle-number">02</span>
+                        <h3 class="serif">Conceito em sistemas.</h3>
+                        <p>Materiais, marcenaria, luz, volumetria e circulacao evoluem juntos. Nada e tratado como camada solta.</p>
+                    </article>
+                    <article class="principle-card reveal">
+                        <span class="principle-number">03</span>
+                        <h3 class="serif">Presenca na execucao.</h3>
+                        <p>Compatibilizacao, detalhamento e obra assistida para proteger a ideia original ate o ultimo acabamento.</p>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact" class="section-shell">
+            <div class="container">
+                <div class="contact-grid">
+                    <article class="contact-panel reveal">
+                        <span class="eyebrow">Proximo passo</span>
+                        <h2 class="serif">Se o espaco precisa contar uma historia melhor, podemos comecar por aqui.</h2>
+                        <p>Para novas residencias, reformas completas, interiores comerciais ou direcao criativa de ambientacao, o studio atende com agenda limitada e acompanhamento proximo.</p>
+                        <div class="contact-actions">
+                            <a class="button button-primary" href="mailto:contato@carolmarinho.com.br">contato@carolmarinho.com.br</a>
+                            <a class="button button-ghost" href="https://wa.me/5511999999999">WhatsApp do studio</a>
+                        </div>
+                    </article>
+                    <aside class="contact-panel reveal">
+                        <div class="contact-detail-list">
+                            <div class="contact-detail"><small>Base</small><strong>Sao Paulo, projetos em todo o Brasil</strong></div>
+                            <div class="contact-detail"><small>Escopo</small><strong>Arquitetura, interiores, detalhamento e styling</strong></div>
+                            <div class="contact-detail"><small>Atendimento</small><strong>Consultas presenciais e remotas com cronograma dedicado</strong></div>
+                            <div class="contact-detail"><small>Instagram</small><strong>@carolmarinho.arq</strong></div>
+                        </div>
+                    </aside>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <div class="compare-modal" id="compareModal" hidden>
+        <div class="compare-dialog" role="dialog" aria-modal="true" aria-labelledby="compareTitle">
+            <div class="compare-header">
+                <div>
+                    <span class="eyebrow">Comparativo do studio</span>
+                    <h2 class="serif" id="compareTitle">Compare os formatos de projeto.</h2>
+                    <p>O mesmo rigor formal se adapta a diferentes escalas. Use as abas para ver como o studio se posiciona em cada frente e navegue pelas cards como em uma galeria de produto.</p>
+                </div>
+                <button class="control-button compare-close" id="closeCompare" type="button" aria-label="Fechar comparativo">Fechar</button>
+            </div>
+            <div class="compare-content">
+                <div class="compare-tabs" id="compareTabs">
+                    <button class="compare-tab active" type="button" data-compare-tab="residencial">Residencial</button>
+                    <button class="compare-tab" type="button" data-compare-tab="corporativo">Corporativo</button>
+                    <button class="compare-tab" type="button" data-compare-tab="interiores">Interiores</button>
+                </div>
+                <div class="compare-slide active" data-compare-slide="residencial"></div>
+                <div class="compare-slide" data-compare-slide="corporativo"></div>
+                <div class="compare-slide" data-compare-slide="interiores"></div>
+                <div class="compare-footer">
+                    <p class="section-copy">Use este comparativo como leitura rapida do portfolio e depois avance para um projeto sob medida.</p>
+                    <div class="compare-nav">
+                        <button class="arrow-button" id="comparePrev" type="button" aria-label="Aba anterior">&larr;</button>
+                        <button class="arrow-button" id="compareNext" type="button" aria-label="Proxima aba">&rarr;</button>
                     </div>
                 </div>
             </div>
         </div>
-    </section>
+    </div>
 
-    <section id="projetos" class="section-padding" style="background-color: #FFFFFF;">
-        <div class="projects-header reveal">
-            <h2 class="section-title" style="display: inline-block;">Obras & Projetos</h2>
-        </div>
-
-        <div class="project-item reveal">
-            <div class="project-img-wrapper hover-target">
-                <img src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?q=80&w=1000&auto=format&fit=crop" class="project-img" alt="Residencial Térreo">
+    <footer class="site-footer">
+        <div class="footer-grid">
+            <p>Carol Marinho Arquitetura. Portfolio conceitual com linguagem de produto premium aplicada a arquitetura.</p>
+            <div class="footer-links">
+                <a href="#overview">Inicio</a>
+                <a href="#projects">Projetos</a>
+                <a href="#contact">Contato</a>
             </div>
-            <div class="project-info">
-                <span class="project-meta">Acadêmico • 2023 • Revit & Enscape</span>
-                <h3>Residencial Térreo</h3>
-                <p>Projeto executivo desenvolvido durante a disciplina de Maquete Virtual, focado em detalhamento construtivo e domínio de representação tridimensional.</p>
-                <a href="#" class="btn-projeto hover-target">Ver Detalhes</a>
-            </div>
-        </div>
-
-        <div class="project-item reveal">
-            <div class="project-img-wrapper hover-target">
-                <img src="https://images.unsplash.com/photo-1518134346374-184f9d21ce23?q=80&w=1000&auto=format&fit=crop" class="project-img" alt="Reforma do Chalé">
-            </div>
-            <div class="project-info">
-                <span class="project-meta">Acadêmico • 2024 • AutoCAD & SketchUp</span>
-                <h3>Reforma do Chalé</h3>
-                <p>Transformação de um chalé em residência principal. O foco foi atender as demandas do cliente criando uma casa acolhedora, relaxante, com ambientes espaçosos e excelente ventilação cruzada.</p>
-                <a href="#" class="btn-projeto hover-target">Ver Detalhes</a>
-            </div>
-        </div>
-
-        <div class="project-item reveal">
-            <div class="project-img-wrapper hover-target">
-                <img src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?q=80&w=1000&auto=format&fit=crop" class="project-img" alt="Vila Oliveira">
-            </div>
-            <div class="project-info">
-                <span class="project-meta">Acadêmico • 2023 • Arquitetura Inclusiva</span>
-                <h3>Residencial Vila Oliveira</h3>
-                <p>Conceito aberto planejado para a acessibilidade de uma pessoa com deficiência (PCD). Materiais com alta performance acústica, cores claras ampliando os espaços e forte integração familiar.</p>
-                <a href="#" class="btn-projeto hover-target">Ver Detalhes</a>
-            </div>
-        </div>
-
-    </section>
-
-    <footer id="contato">
-        <h2 class="reveal">Vamos materializar ideias?</h2>
-        <div class="contact-links reveal" style="transition-delay: 0.2s;">
-            <a href="mailto:carolmarinho0706@gmail.com" class="hover-target">carolmarinho0706@gmail.com</a>
-            <a href="tel:+5511932426452" class="hover-target">+55 (11) 93242 6452</a>
-            <a href="#" class="hover-target">Mogi das Cruzes, SP</a>
-        </div>
-        <div class="copyright">
-            <p>&copy; 2024 Ana Carolina Barbosa Marinho. Todos os direitos reservados.</p>
         </div>
     </footer>
-
     <script>
-        // 1. Lógica do Cursor Customizado
-        const cursor = document.getElementById('cursor');
-        const hoverTargets = document.querySelectorAll('.hover-target');
-
-        document.addEventListener('mousemove', (e) => {
-            cursor.style.left = e.clientX + 'px';
-            cursor.style.top = e.clientY + 'px';
-        });
-
-        hoverTargets.forEach(target => {
-            target.addEventListener('mouseenter', () => {
-                cursor.classList.add('hovered');
-            });
-            target.addEventListener('mouseleave', () => {
-                cursor.classList.add('hovered');
-                cursor.classList.remove('hovered'); // correção de reset
-            });
-        });
-
-        // 2. Navbar encolhendo ao rolar a página
-        const navbar = document.getElementById('navbar');
-        window.addEventListener('scroll', () => {
-            if (window.scrollY > 50) {
-                navbar.classList.add('scrolled');
-            } else {
-                navbar.classList.remove('scrolled');
+        const projectData = {
+            residencia: {
+                title: "Casa Horizonte",
+                description: "Residencia de fim de semana desenhada para alternar introspeccao e abertura. A casa se organiza em torno de um eixo sombreado, onde sala, cozinha e patio se encontram com naturalidade.",
+                tagline: "Arquitetura pensada para diluir fronteiras entre abrigo, paisagem e rotina.",
+                facts: [
+                    ["640 m²", "area construida"],
+                    ["12 meses", "da concepcao a obra"],
+                    ["Pedra + madeira", "paleta material"]
+                ]
+            },
+            corporativo: {
+                title: "Atelier de Marca",
+                description: "Escritorio boutique para uma consultoria criativa, com recepcao cenografica, salas flexiveis e lounges de apoio que prolongam a experiencia da marca em cada encontro.",
+                tagline: "Hospitalidade corporativa com imagem forte e operacao silenciosa.",
+                facts: [
+                    ["430 m²", "area reformada"],
+                    ["8 semanas", "fase executiva"],
+                    ["Marca no espaco", "identidade visual"]
+                ]
+            },
+            interiores: {
+                title: "Apartamento Brisa",
+                description: "Reforma integral de um apartamento urbano com foco em luz difusa, continuidade material e marcenaria como espinha dorsal do projeto.",
+                tagline: "Interiores que reorganizam a rotina com leveza, precisao e permanencia.",
+                facts: [
+                    ["210 m²", "interiores completos"],
+                    ["6 meses", "obra assistida"],
+                    ["Linho + carvalho", "materiais-chave"]
+                ]
             }
-        });
+        };
 
-        // 3. Efeito Reveal (Surgimento de elementos com scroll)
-        function reveal() {
-            var reveals = document.querySelectorAll(".reveal");
-            for (var i = 0; i < reveals.length; i++) {
-                var windowHeight = window.innerHeight;
-                var elementTop = reveals[i].getBoundingClientRect().top;
-                var elementVisible = 100; // O quão antes o elemento aparece
-
-                if (elementTop < windowHeight - elementVisible) {
-                    reveals[i].classList.add("active");
+        const compareData = {
+            residencial: [
+                {
+                    label: "Casa completa",
+                    title: "Residencias com permanencia e paisagem.",
+                    text: "Projetos do zero ou grandes reformas com estudo volumetrico, materialidade externa e interiores integrados.",
+                    image: "https://images.unsplash.com/photo-1600607687644-c7171b42498f?auto=format&fit=crop&w=1200&q=80",
+                    alt: "Living amplo com madeira e luz lateral",
+                    metrics: [["Alta", "complexidade"], ["360", "escopo"], ["Obra assistida", "entrega"]]
+                },
+                {
+                    label: "Casa de campo",
+                    title: "Ritmo mais lento, espacialidade mais aberta.",
+                    text: "Arquitetura pensada para ventilar, enquadrar o exterior e prolongar a vida cotidiana para fora.",
+                    image: "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=1200&q=80",
+                    alt: "Fachada minimalista com patio",
+                    metrics: [["Terreno", "leitura"], ["Luz", "estrategia"], ["Materia", "durabilidade"]]
+                },
+                {
+                    label: "Suite master",
+                    title: "Detalhes que sustentam conforto real.",
+                    text: "Desenho de marcenaria, iluminacao, paginacao e objetos para transformar quartos e banhos em experiencia.",
+                    image: "https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format&fit=crop&w=1200&q=80",
+                    alt: "Suite com tons claros e tecido",
+                    metrics: [["Curadoria", "mobiliario"], ["Marcenaria", "sob medida"], ["Styling", "final"]]
                 }
-            }
+            ],
+            corporativo: [
+                {
+                    label: "Workspace",
+                    title: "Operacao clara, atmosfera premium.",
+                    text: "Layouts para receber clientes, organizar times e sustentar rituais de marca sem parecer genericos.",
+                    image: "https://images.unsplash.com/photo-1497366412874-3415097a27e7?auto=format&fit=crop&w=1200&q=80",
+                    alt: "Escritorio contemporaneo com mesas compartilhadas",
+                    metrics: [["Branding", "espacial"], ["Flexivel", "layout"], ["ROI visual", "percepcao"]]
+                },
+                {
+                    label: "Recepcao",
+                    title: "Hospitalidade como primeiro argumento.",
+                    text: "Recepcao, lounge, sala de espera e meeting points desenhados para comunicar valor imediatamente.",
+                    image: "https://images.unsplash.com/photo-1524758631624-e2822e304c36?auto=format&fit=crop&w=1200&q=80",
+                    alt: "Recepcao corporativa com sofas e madeira",
+                    metrics: [["Fluxo", "cliente"], ["Acustica", "atencao"], ["Imagem", "de marca"]]
+                },
+                {
+                    label: "Boardroom",
+                    title: "Concentracao sem perder presenca.",
+                    text: "Salas executivas com luz controlada, tecnologia integrada e desenho consistente com a cultura da empresa.",
+                    image: "https://images.unsplash.com/photo-1497366811353-6870744d04b2?auto=format&fit=crop&w=1200&q=80",
+                    alt: "Sala de reuniao com grande mesa e vista",
+                    metrics: [["Tecnologia", "embutida"], ["Imagem", "institucional"], ["Detalhe", "executivo"]]
+                }
+            ],
+            interiores: [
+                {
+                    label: "Reforma total",
+                    title: "Interiores que reorganizam a vida diaria.",
+                    text: "Para apartamentos e casas ja existentes, o foco esta em fluidez, armazenamento e materialidade duravel.",
+                    image: "https://images.unsplash.com/photo-1484154218962-a197022b5858?auto=format&fit=crop&w=1200&q=80",
+                    alt: "Cozinha em madeira clara e pedra",
+                    metrics: [["Planta", "otimizada"], ["Detalhes", "finos"], ["Conforto", "continuo"]]
+                },
+                {
+                    label: "Ambientes intimos",
+                    title: "Silencio visual para quartos, banhos e closets.",
+                    text: "Texturas suaves, iluminacao em camadas e marcenaria discreta para criar descanso sem excesso de elementos.",
+                    image: "https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format&fit=crop&w=1200&q=80",
+                    alt: "Quarto com cabeceira estofada e iluminacao suave",
+                    metrics: [["Luz", "difusa"], ["Rouparia", "integrada"], ["Paleta", "neutra"]]
+                },
+                {
+                    label: "Area social",
+                    title: "Espacos para receber sem abrir mao do essencial.",
+                    text: "Salas, jantar e cozinhas tratadas como um mesmo campo cenico, com foco em conforto e permanencia.",
+                    image: "https://images.unsplash.com/photo-1494526585095-c41746248156?auto=format&fit=crop&w=1200&q=80",
+                    alt: "Area social com vista externa e mobiliario leve",
+                    metrics: [["Layout", "fluido"], ["Mobiliario", "curado"], ["Uso diario", "real"]]
+                }
+            ]
+        };
+
+        const globalHeader = document.getElementById("globalHeader");
+        const globalShell = document.getElementById("globalShell");
+        const mobileMenuToggle = document.getElementById("mobileMenuToggle");
+        const sectionIds = ["overview", "highlights", "projects", "gallery", "process", "contact"];
+
+        mobileMenuToggle.addEventListener("click", () => {
+            const expanded = mobileMenuToggle.getAttribute("aria-expanded") === "true";
+            mobileMenuToggle.setAttribute("aria-expanded", String(!expanded));
+            globalShell.classList.toggle("menu-open", !expanded);
+        });
+
+        [...document.querySelectorAll(".global-links a"), ...document.querySelectorAll(".local-links a")].forEach((link) => {
+            link.addEventListener("click", () => {
+                globalShell.classList.remove("menu-open");
+                mobileMenuToggle.setAttribute("aria-expanded", "false");
+            });
+        });
+
+        window.addEventListener("scroll", () => {
+            globalHeader.classList.toggle("scrolled", window.scrollY > 18);
+        });
+
+        const sectionLinkMap = new Map(
+            Array.from(document.querySelectorAll("[data-section-link]")).map((link) => [link.dataset.sectionLink, link])
+        );
+
+        const primaryLinkMap = new Map(
+            Array.from(document.querySelectorAll(".global-links a")).map((link) => [link.getAttribute("href").slice(1), link])
+        );
+
+        const sectionObserver = new IntersectionObserver((entries) => {
+            const visible = entries
+                .filter((entry) => entry.isIntersecting)
+                .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
+
+            if (!visible) return;
+
+            const id = visible.target.id;
+            sectionLinkMap.forEach((link, key) => link.classList.toggle("active", key === id));
+            primaryLinkMap.forEach((link, key) => link.classList.toggle("active", key === id));
+        }, { threshold: 0.35 });
+
+        sectionIds.forEach((id) => {
+            const section = document.getElementById(id);
+            if (section) sectionObserver.observe(section);
+        });
+
+        const revealObserver = new IntersectionObserver((entries) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add("visible");
+                    revealObserver.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.2 });
+
+        document.querySelectorAll(".reveal").forEach((item) => revealObserver.observe(item));
+
+        const heroSlides = Array.from(document.querySelectorAll(".hero-slide"));
+        const heroPlayPause = document.getElementById("heroPlayPause");
+        let heroIndex = 0;
+        let heroPlaying = true;
+        let heroTimer = null;
+
+        function showHeroSlide(index) {
+            heroSlides.forEach((slide, slideIndex) => slide.classList.toggle("active", slideIndex === index));
+            heroIndex = index;
         }
-        window.addEventListener("scroll", reveal);
-        // Chama uma vez para exibir elementos que já estão no topo
-        reveal();
+
+        function startHero() {
+            clearInterval(heroTimer);
+            heroTimer = window.setInterval(() => {
+                showHeroSlide((heroIndex + 1) % heroSlides.length);
+            }, 5200);
+            heroPlayPause.textContent = "Pause";
+            heroPlayPause.setAttribute("aria-label", "Pausar sequencia visual");
+            heroPlaying = true;
+        }
+
+        function stopHero() {
+            clearInterval(heroTimer);
+            heroPlayPause.textContent = "Play";
+            heroPlayPause.setAttribute("aria-label", "Retomar sequencia visual");
+            heroPlaying = false;
+        }
+
+        heroPlayPause.addEventListener("click", () => {
+            if (heroPlaying) stopHero();
+            else startHero();
+        });
+
+        startHero();
+
+        const highlightsTrack = document.getElementById("highlightsTrack");
+        const highlightCards = Array.from(highlightsTrack.children);
+        const highlightsDots = document.getElementById("highlightsDots");
+        const highlightsPrev = document.getElementById("highlightsPrev");
+        const highlightsNext = document.getElementById("highlightsNext");
+        const highlightsPlayPause = document.getElementById("highlightsPlayPause");
+        highlightsPrev.innerHTML = "&larr;";
+        highlightsNext.innerHTML = "&rarr;";
+        let highlightIndex = 0;
+        let highlightsPlaying = true;
+        let highlightsTimer = null;
+
+        highlightCards.forEach((_, index) => {
+            const dot = document.createElement("button");
+            dot.className = `dot${index === 0 ? " active" : ""}`;
+            dot.type = "button";
+            dot.setAttribute("aria-label", `Ir para destaque ${index + 1}`);
+            dot.addEventListener("click", () => {
+                highlightIndex = index;
+                syncHighlights();
+                restartHighlights();
+            });
+            highlightsDots.appendChild(dot);
+        });
+
+        const highlightDotButtons = Array.from(highlightsDots.children);
+
+        function syncHighlights() {
+            const card = highlightCards[highlightIndex];
+            highlightsTrack.scrollTo({ left: card.offsetLeft - highlightsTrack.offsetLeft, behavior: "smooth" });
+            highlightDotButtons.forEach((dot, index) => dot.classList.toggle("active", index === highlightIndex));
+        }
+
+        function nextHighlight(direction = 1) {
+            highlightIndex = (highlightIndex + direction + highlightCards.length) % highlightCards.length;
+            syncHighlights();
+        }
+
+        function startHighlights() {
+            clearInterval(highlightsTimer);
+            highlightsTimer = window.setInterval(() => nextHighlight(1), 4800);
+            highlightsPlayPause.textContent = "Pause";
+            highlightsPlayPause.setAttribute("aria-label", "Pausar destaques");
+            highlightsPlaying = true;
+        }
+
+        function stopHighlights() {
+            clearInterval(highlightsTimer);
+            highlightsPlayPause.textContent = "Play";
+            highlightsPlayPause.setAttribute("aria-label", "Retomar destaques");
+            highlightsPlaying = false;
+        }
+
+        function restartHighlights() {
+            if (highlightsPlaying) startHighlights();
+        }
+
+        highlightsPrev.addEventListener("click", () => {
+            nextHighlight(-1);
+            restartHighlights();
+        });
+
+        highlightsNext.addEventListener("click", () => {
+            nextHighlight(1);
+            restartHighlights();
+        });
+
+        highlightsPlayPause.addEventListener("click", () => {
+            if (highlightsPlaying) stopHighlights();
+            else startHighlights();
+        });
+
+        highlightsTrack.addEventListener("scroll", () => {
+            const nearest = highlightCards.reduce((bestIndex, card, index) => {
+                const currentDistance = Math.abs(card.offsetLeft - highlightsTrack.scrollLeft - highlightsTrack.offsetLeft);
+                const bestDistance = Math.abs(highlightCards[bestIndex].offsetLeft - highlightsTrack.scrollLeft - highlightsTrack.offsetLeft);
+                return currentDistance < bestDistance ? index : bestIndex;
+            }, 0);
+            highlightIndex = nearest;
+            highlightDotButtons.forEach((dot, index) => dot.classList.toggle("active", index === nearest));
+        });
+
+        startHighlights();
+
+        const projectButtons = Array.from(document.querySelectorAll(".project-button"));
+        const projectChips = Array.from(document.querySelectorAll("[data-project-chip]"));
+        const projectPanels = Array.from(document.querySelectorAll("[data-project-panel]"));
+        const projectTitle = document.getElementById("projectTitle");
+        const projectDescription = document.getElementById("projectDescription");
+        const projectTagline = document.getElementById("projectTagline");
+        const projectFacts = document.getElementById("projectFacts");
+
+        function renderProject(projectKey) {
+            const data = projectData[projectKey];
+            projectButtons.forEach((button) => button.classList.toggle("active", button.dataset.project === projectKey));
+            projectChips.forEach((chip) => chip.classList.toggle("active", chip.dataset.projectChip === projectKey));
+            projectPanels.forEach((panel) => panel.classList.toggle("active", panel.dataset.projectPanel === projectKey));
+            projectTitle.textContent = data.title;
+            projectDescription.textContent = data.description;
+            projectTagline.textContent = data.tagline;
+            projectFacts.innerHTML = data.facts.map(([value, label]) => `<div class="fact"><strong>${value}</strong><span>${label}</span></div>`).join("");
+        }
+
+        [...projectButtons, ...projectChips].forEach((button) => {
+            button.addEventListener("click", () => {
+                renderProject(button.dataset.project || button.dataset.projectChip);
+            });
+        });
+
+        renderProject("residencia");
+
+        const compareModal = document.getElementById("compareModal");
+        const openCompareButtons = [document.getElementById("openCompareHero"), document.getElementById("openCompareGallery")];
+        const closeCompare = document.getElementById("closeCompare");
+        const compareTabs = Array.from(document.querySelectorAll(".compare-tab"));
+        const compareSlides = Array.from(document.querySelectorAll(".compare-slide"));
+        const compareOrder = compareTabs.map((tab) => tab.dataset.compareTab);
+        let compareIndex = 0;
+
+        function createCompareCard(item) {
+            return `
+                <article class="compare-card">
+                    <img src="${item.image}" alt="${item.alt}">
+                    <div class="compare-card-body">
+                        <small>${item.label}</small>
+                        <h3 class="serif">${item.title}</h3>
+                        <p>${item.text}</p>
+                        <div class="compare-metrics">
+                            ${item.metrics.map(([value, label]) => `
+                                <div class="compare-metric">
+                                    <strong>${value}</strong>
+                                    <span>${label}</span>
+                                </div>
+                            `).join("")}
+                        </div>
+                    </div>
+                </article>
+            `;
+        }
+
+        compareSlides.forEach((slide) => {
+            slide.innerHTML = compareData[slide.dataset.compareSlide].map(createCompareCard).join("");
+        });
+
+        function syncCompare(index) {
+            compareIndex = (index + compareOrder.length) % compareOrder.length;
+            const activeKey = compareOrder[compareIndex];
+            compareTabs.forEach((tab) => tab.classList.toggle("active", tab.dataset.compareTab === activeKey));
+            compareSlides.forEach((slide) => slide.classList.toggle("active", slide.dataset.compareSlide === activeKey));
+        }
+
+        compareTabs.forEach((tab, index) => {
+            tab.addEventListener("click", () => syncCompare(index));
+        });
+
+        document.getElementById("comparePrev").addEventListener("click", () => syncCompare(compareIndex - 1));
+        document.getElementById("compareNext").addEventListener("click", () => syncCompare(compareIndex + 1));
+        syncCompare(0);
+
+        function openCompare() {
+            compareModal.hidden = false;
+            document.body.style.overflow = "hidden";
+            closeCompare.focus();
+        }
+
+        function hideCompare() {
+            compareModal.hidden = true;
+            document.body.style.overflow = "";
+        }
+
+        openCompareButtons.forEach((button) => button.addEventListener("click", openCompare));
+        closeCompare.addEventListener("click", hideCompare);
+        compareModal.addEventListener("click", (event) => {
+            if (event.target === compareModal) hideCompare();
+        });
+
+        document.addEventListener("keydown", (event) => {
+            if (event.key === "Escape" && !compareModal.hidden) hideCompare();
+        });
     </script>
 </body>
 </html>
